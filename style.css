@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --white: #d9d9d9;
+  --offwhite: #fbf1df;
+  --black: #0d1d1d;
+}
+
+body {
+  background-color: var(--black);
+}
+
+nav {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 3rem;
+  align-items: center;
+}
+
+h1 {
+  color: var(--offwhite);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+  color: var(--offwhite);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h3#text-value {
+  color: var(--offwhite);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3rem;
+  font-weight: normal;
+  padding-bottom: 7vh;
+}
+
+div#resistor-cable {
+  background: radial-gradient(
+    50% 1000% at center,
+    silver 50%,
+    var(--black) 80%
+  );
+  width: 100%;
+  height: 0.5rem;
+  top: 50%;
+  left: 0;
+  position: relative;
+  display: inline-block;
+  transform: translate(0, 100%);
+  z-index: -1;
+}
+
+div#resistor-base {
+  background-color: burlywood;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  overflow: hidden;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  border-radius: 50px;
+  transform: translate(50%, 50%);
+}
+
+div#resistor-base > :first-child {
+  margin-left: 5%;
+}
+
+div#resistor-base > :last-child {
+  margin-right: 5%;
+}
+
+div.resistor-line {
+  background-color: black;
+  height: 100vh;
+  width: 5vw;
+  z-index: 300;
+}
+
+div#option-divider {
+  background: radial-gradient(45% 200% at center, var(--white), var(--black));
+  width: 100%;
+  height: 0.3rem;
+  top: calc(50vh + 1.5rem);
+  left: 0;
+  position: absolute;
+  display: block;
+  transform: translate(0, 50%);
+}
+
+div#option-color,
+div#option-value {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: calc(50vh - 1.5rem - 5px);
+}
+
+div.container-resistor {
+  width: 100%;
+  height: 20vh;
+  padding-bottom: 3vh;
+}
+
+.black,
+.r0 {
+  background-color: black !important;
+}
+
+.brown,
+.r1 {
+  background-color: saddlebrown !important;
+}
+
+.red,
+.r2 {
+  background-color: red !important;
+}
+
+.orange,
+.r3 {
+  background-color: orange !important;
+}
+
+.yellow,
+.r4 {
+  background-color: yellow !important;
+}
+
+.green,
+.r5 {
+  background-color: green !important;
+}
+
+.blue,
+.r6 {
+  background-color: blue !important;
+}
+
+.purple,
+.r7 {
+  background-color: rebeccapurple !important;
+}
+
+.gray,
+.r8 {
+  background-color: gray !important;
+}
+
+.empty,
+.r9 {
+  background-color: transparent !important;
+}
