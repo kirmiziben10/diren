@@ -10,11 +10,12 @@
 </head>
 
 <body>
+    <script src="index.js"></script>
     <nav>
         <h1>N'apıcan?</H1>
     </nav>
 
-    <div id="option-color"> 
+    <div id="option-color" onclick="transitionToColorSelection()"> 
         <h2>Renk seçicem</h2>
         <div class="container-resistor">
             <div id="resistor-cable"></div>
@@ -30,7 +31,7 @@
 
     <div id="option-divider"></div>
 
-    <div id="option-value">
+    <div id="option-value" onclick="transitionToValueSelection()">
         <h2>Değer giricem</h2>
         <h3 id="text-value">1 KΩ ± 5</h3>
     </div>
