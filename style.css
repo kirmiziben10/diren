@@ -73,11 +73,11 @@ div#resistor-base {
 }
 
 div#resistor-base > :first-child {
-  margin-left: 5%;
+  margin-left: 10%;
 }
 
 div#resistor-base > :last-child {
-  margin-right: 5%;
+  margin-right: 10%;
 }
 
 div.resistor-line {
@@ -160,6 +160,19 @@ div.container-resistor {
 }
 
 .empty,
-.r9 {
+.r9,
+.re {
   background-color: transparent !important;
+}
+
+.gold,
+.rg {
+    background-color: orange !important;
+    box-shadow: 1px 0px 15px 5px rgba(255,255,255,0.75) inset;
+}
+
+.silver,
+.rs {
+    background-color: gray !important;
+    box-shadow: 1px 0px 15px 5px rgba(255,255,255,0.75) inset;
 }
