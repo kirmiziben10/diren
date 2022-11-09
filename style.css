@@ -14,7 +14,6 @@ body {
 }
 
 nav {
-  color: var(--offwhite);
   padding-top: 10px;
   display: flex;
   justify-content: center;
@@ -26,17 +25,20 @@ nav {
 }
 
 h1 {
-  color: inherit;
+  color: var(--white);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h2 {
-  color: inherit;
+  color: var(--white);
+  left: 50%;
+  top: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: inherit;
 }
 
 h3#text-value {
-  color: inherit;
+  color: var(--white);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 3rem;
   font-weight: normal;
@@ -106,17 +108,18 @@ div#option-color,
 div#option-value {
   color: var(--offwhite);
   display: flex;
-  position:absolute;
+  position: absolute;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
   height: calc(50vh - 1.5rem - 5px);
   transition: ease-in-out 300ms;
+  cursor: pointer;
 }
 
-div#option-value{
-    top: calc(50vh + 1.5rem + 5px);
+div#option-value {
+  top: calc(50vh + 1.5rem + 5px);
 }
 
 div.container-resistor {
@@ -178,12 +181,12 @@ div.container-resistor {
 
 .gold,
 .rg {
-    background-color: orange !important;
-    box-shadow: 1px 0px 15px 5px rgba(255,255,255,0.75) inset;
+  background-color: orange !important;
+  box-shadow: 1px 0px 15px 5px rgba(255, 255, 255, 0.75) inset;
 }
 
 .silver,
 .rs {
-    background-color: gray !important;
-    box-shadow: 1px 0px 15px 5px rgba(255,255,255,0.75) inset;
+  background-color: gray !important;
+  box-shadow: 1px 0px 15px 5px rgba(255, 255, 255, 0.75) inset;
 }
