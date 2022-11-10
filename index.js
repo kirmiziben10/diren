@@ -3,13 +3,16 @@ function transitionToColorSelection() {
   const color = document.querySelector("div#option-color");
   const value = document.querySelector("div#option-value");
   const divider = document.querySelector("div#option-divider");
+  const colorContainer = document.querySelector("#colors-container");
 
   nav.style.opacity = "0";
   value.style.opacity = "0";
   divider.style.opacity = "0";
   color.style.top = "0";
   color.style.height = "100vh";
-  color.querySelector("h2").style.transform = "translate(0, -23vh)";
+  color.querySelector("h2").style.transform = "translate(0, -4vh)";
+  colorContainer.style.display = "flex";
+  colorContainer.style.opacity = "255";
 
   setTimeout(() => {
     value.style.display = "none";

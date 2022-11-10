@@ -59,7 +59,6 @@ div#resistor-cable {
   display: inline-block;
   transform: translate(0, 100%);
   z-index: -1;
-  transition: ease-in-out 300ms;
 }
 
 div#resistor-base {
@@ -90,6 +89,34 @@ div.resistor-line {
   height: 100vh;
   width: 5vmin;
   z-index: 300;
+  transition: inherit;
+}
+
+div#colors-container{
+  display: none;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 50vh;
+  width: 50vw;
+  opacity: 0;
+  transition: inherit;
+  transform: translateX(-50%);
+}
+
+div.color-picker{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: bold ;
+  display: flex;
+  text-anchor: middle;
+  align-items: center;
+  justify-content: center;
+  width: 10vmin;
+  height: 10vmin;
+  border-radius: 100%;
+  margin: 4vmin;
+  font-size: 3vmin;
 }
 
 div#option-divider {
@@ -126,6 +153,7 @@ div.container-resistor {
   width: 100vmin;
   height: 20vh;
   padding-bottom: 3vh;
+  transition: inherit;
 }
 
 .black,
@@ -151,6 +179,7 @@ div.container-resistor {
 .yellow,
 .r4 {
   background-color: yellow !important;
+  color: black;
 }
 
 .green,
@@ -177,6 +206,13 @@ div.container-resistor {
 .r9,
 .re {
   background-color: transparent !important;
+}
+
+div.empty,
+div.r9,
+div.re{
+  border-width: 2px !important;
+  border-color: var(--white) !important;
 }
 
 .gold,
