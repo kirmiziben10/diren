@@ -30,10 +30,14 @@ function transitionToValueSelection() {
   divider.style.opacity = "0";
   value.style.top = "0";
   value.style.height = "100vh";
-  value.querySelector("h3").transform = "translate(0, -10vh)"
+  value.querySelector("h3").transform = "translate(0, -10vh)";
   value.querySelector("h2").style.transform = "translate(0, -19vh)";
 
   setTimeout(() => {
     color.style.display = "none";
   }, 300);
+}
+
+function setCurrentColor(val) {
+  console.log(val);
 }
