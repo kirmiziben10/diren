@@ -10,7 +10,7 @@ function transitionToColorSelection() {
   divider.style.opacity = "0";
   color.style.top = "0";
   color.style.height = "100vh";
-  color.querySelector("h2").style.transform = "translate(0, -4vh)";
+  color.querySelector("h2").style.transform = "translate(0, -3vh)";
   colorContainer.style.display = "flex";
   colorContainer.style.opacity = "255";
 
@@ -31,7 +31,7 @@ function transitionToValueSelection() {
   value.style.top = "0";
   value.style.height = "100vh";
   value.querySelector("h3").transform = "translate(0, -10vh)"
-  value.querySelector("h2").style.transform = "translate(0, -26vh)";
+  value.querySelector("h2").style.transform = "translate(0, -19vh)";
 
   setTimeout(() => {
     color.style.display = "none";

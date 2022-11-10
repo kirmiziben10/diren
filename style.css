@@ -95,14 +95,13 @@ div.resistor-line {
 div#colors-container{
   display: none;
   flex-direction: column;
-  align-self: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
   flex-wrap: wrap;
   height: 50vh;
-  width: 50vw;
+  width: 100vw;
   opacity: 0;
-  transition: inherit;
-  transform: translateX(-50%);
+  transition: ease-in-out 300ms;
 }
 
 div.color-picker{
@@ -112,11 +111,9 @@ div.color-picker{
   text-anchor: middle;
   align-items: center;
   justify-content: center;
-  width: 10vmin;
-  height: 10vmin;
+  height: 9vh;
+  width: 9vh;
   border-radius: 100%;
-  margin: 4vmin;
-  font-size: 3vmin;
 }
 
 div#option-divider {
@@ -137,7 +134,7 @@ div#option-value {
   display: flex;
   position: absolute;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
   height: calc(50vh - 1.5rem - 5px);
