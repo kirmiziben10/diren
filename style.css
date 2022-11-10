@@ -99,7 +99,7 @@ div#colors-container{
   align-items: center;
   flex-wrap: wrap;
   height: 50vh;
-  width: 100vw;
+  width: 75vw;
   opacity: 0;
   transition: ease-in-out 300ms;
 }
@@ -111,8 +111,9 @@ div.color-picker{
   text-anchor: middle;
   align-items: center;
   justify-content: center;
-  height: 9vh;
-  width: 9vh;
+  height: 8vh;
+  width: 8vh;
+  margin: 1vh;
   border-radius: 100%;
 }
 
