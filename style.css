@@ -98,7 +98,7 @@ div#colors-container{
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-  height: 50vh;
+  height: 60vh;
   width: 75vw;
   opacity: 0;
   transition: ease-in-out 300ms;
@@ -111,8 +111,8 @@ div.color-picker{
   text-anchor: middle;
   align-items: center;
   justify-content: center;
-  height: 8vh;
-  width: 8vh;
+  height: 10vh;
+  width: 10vh;
   margin: 1vh;
   border-radius: 100%;
 }
@@ -209,6 +209,7 @@ div.container-resistor {
 div.empty,
 div.r9,
 div.re{
+  border-radius: 100%;
   border-width: 2px !important;
   border-color: var(--white) !important;
 }
