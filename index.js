@@ -13,7 +13,7 @@ function transitionToColorSelection() {
   divider.style.opacity = "0";
   color.style.top = "0";
   color.style.height = "100vh";
-  color.querySelector("h2").style.transform = "translate(0, 1vh)";
+  color.querySelector("h2").style.transform = "translate(0, -1vh)";
   colorContainer.style.display = "flex";
   colorContainer.style.opacity = "255";
 
@@ -42,19 +42,22 @@ function transitionToValueSelection() {
 }
 
 function setCurrentColor(val) {
-  if(colorSelectionIteration > 4){
+  if (colorSelectionIteration > 4) {
     colorToValue();
-  }else{
-    val = parseInt(val)
+  } else {
+    val = parseInt(val);
     colorArray.push(val);
     colorSelectionIteration++;
   }
 }
 
-function colorToValue(){
+function colorToValue() {
   let temp = "";
-  for(let i = 0; i < colorArray.lenght - 1; i++){
-    temp = temp + colorArray[i].toString();
+  for (let i = 0; i < colorArray.length - 1; i++) {
+    if (i > 0 && colorArray[i] == "9") {
+    } else {
+      temp = temp + colorArray[i].toString();
+    }
   }
-  console.log(temp);
+  console.log(parseInt(temp));
 }
