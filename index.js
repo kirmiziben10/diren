@@ -55,16 +55,23 @@ function setCurrentColor(val) {
 function colorToValue() {
   let temp = "";
   for (let i = 0; i < colorArray.length - 3; i++) {
-      temp = temp + colorArray[i].toString();
+    temp = temp + colorArray[i].toString();
   }
   temp = parseInt(temp);
   temp = temp * Math.pow(10, parseInt(colorArray[colorArray.length - 2]));
-  document.body.style.color = "var(--white)"
-  document.body.style.fontSize = "Large";
-  temp = numberWithCommas(temp);
-  document.body.innerText = temp;
+  displayValue(numberWithCommas(temp) + "Ω");
 }
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function displayValue(val) {
+  let div = document.createElement("div");
+  div.id = "display-value";
+  let h2 = document.createElement("h2");
+  h2.innerHTML = val;
+  div.appendChild(h2);
+  document.body.innerHTML = "";
+  document.body.appendChild(div);
 }
