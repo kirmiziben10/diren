@@ -19,6 +19,7 @@ function transitionToColorSelection() {
 
   setTimeout(() => {
     value.style.display = "none";
+    color.onclick = "";
   }, 300);
 }
 
@@ -53,11 +54,17 @@ function setCurrentColor(val) {
 
 function colorToValue() {
   let temp = "";
-  for (let i = 0; i < colorArray.length - 1; i++) {
-    if (i > 0 && colorArray[i] == "9") {
-    } else {
+  for (let i = 0; i < colorArray.length - 3; i++) {
       temp = temp + colorArray[i].toString();
-    }
   }
-  console.log(parseInt(temp));
+  temp = parseInt(temp);
+  temp = temp * Math.pow(10, parseInt(colorArray[colorArray.length - 2]));
+  document.body.style.color = "var(--white)"
+  document.body.style.fontSize = "Large";
+  temp = numberWithCommas(temp);
+  document.body.innerText = temp;
+}
+
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
