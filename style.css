@@ -162,6 +162,16 @@ div.container-resistor {
   transition: inherit;
 }
 
+.selecting{
+  animation: selecting 1000ms ease-in-out infinite;
+}
+
+@keyframes selecting {
+  0% {border: 3px dashed var(--white);}
+  50% {border: 3px dashed transparent;}
+  100% {border: 3px dashed var(--white);}
+}
+
 .black,
 .r0 {
   background-color: black !important;

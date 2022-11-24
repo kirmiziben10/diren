@@ -1,4 +1,3 @@
-var colorSelectionIteration = 0;
 var colorArray = [];
 var value;
 function transitionToColorSelection() {
@@ -7,7 +6,9 @@ function transitionToColorSelection() {
   const value = document.querySelector("div#option-value");
   const divider = document.querySelector("div#option-divider");
   const colorContainer = document.querySelector("#colors-container");
+  const indicator = document.querySelector("#resistor-base :nth-child(1)");
 
+  indicator.classList.add("selecting");
   nav.style.opacity = "0";
   value.style.opacity = "0";
   divider.style.opacity = "0";
@@ -43,12 +44,31 @@ function transitionToValueSelection() {
 }
 
 function setCurrentColor(val) {
-  if (colorSelectionIteration > 4) {
-    colorToValue();
-  } else {
+  console.log(colorArray.length);
+  let preIndicator = document.querySelector(
+    "#resistor-base :nth-child(" + String(colorArray.length + 1) + ")"
+  );
+  let indicator = document.querySelector(
+    "#resistor-base :nth-child(" + String(colorArray.length + 2) + ")"
+  );
+
+  if (preIndicator !== null) {
+    preIndicator.classList.remove("selecting");
+  }
+  if (indicator !== null) {
+    indicator.classList.add("selecting");
+  }
+
+  if (colorArray.length <= 2) {
     val = parseInt(val);
     colorArray.push(val);
-    colorSelectionIteration++;
+  }
+  if (colorArray.length >= 3) {
+    val = parseInt(val);
+    colorArray.push(val);
+  }
+  if (colorArray.length == 5) {
+    colorToValue();
   }
 }
 
