@@ -57,6 +57,10 @@ function setCurrentColor(val) {
   }
   if (indicator !== null) {
     indicator.classList.add("selecting");
+  }else{
+    if (preIndicator !== null) {
+      preIndicator.classList.add("selecting");
+    }
   }
 
   if (colorArray.length <= 2) {
@@ -68,8 +72,19 @@ function setCurrentColor(val) {
     colorArray.push(val);
   }
   if (colorArray.length == 5) {
+    addProceedBtn();
+  }
+  if (colorArray.length == 6) {
     colorToValue();
   }
+}
+
+function addProceedBtn(){
+  let div = document.createElement("div");
+  div.setAttribute("id","btn-proceed");
+  div.setAttribute("onclick","colorToValue()");
+  div.innerHTML = "✓"
+  document.querySelector("body").appendChild(div);
 }
 
 function colorToValue() {
