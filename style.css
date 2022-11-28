@@ -163,6 +163,13 @@ div.container-resistor {
   transition: inherit;
 }
 
+div#result{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in 300ms;
+}
+
 .selecting{
   animation: selecting 1000ms ease-in-out infinite;
 }

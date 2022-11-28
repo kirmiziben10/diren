@@ -57,7 +57,7 @@ function setCurrentColor(val) {
   }
   if (indicator !== null) {
     indicator.classList.add("selecting");
-  }else{
+  } else {
     if (preIndicator !== null) {
       preIndicator.classList.add("selecting");
     }
@@ -79,11 +79,11 @@ function setCurrentColor(val) {
   }
 }
 
-function addProceedBtn(){
+function addProceedBtn() {
   let div = document.createElement("div");
-  div.setAttribute("id","btn-proceed");
-  div.setAttribute("onclick","colorToValue()");
-  div.innerHTML = "✓"
+  div.setAttribute("id", "btn-proceed");
+  div.setAttribute("onclick", "colorToValue()");
+  div.innerHTML = "✓";
   document.querySelector("body").appendChild(div);
 }
 
@@ -102,11 +102,18 @@ function numberWithCommas(x) {
 }
 
 function displayValue(val) {
+  let optionColor = document.querySelector("#option-color");
   let div = document.createElement("div");
-  div.id = "display-value";
   let h2 = document.createElement("h2");
+  div.id = "display-value";
   h2.innerHTML = val;
   div.appendChild(h2);
-  document.body.innerHTML = "";
-  document.body.appendChild(div);
+  div.setAttribute("id", "result");
+  div.style.opacity = "0";
+  optionColor.style.opacity = "0";
+  setTimeout(() => {    
+    document.body.innerHTML = "";
+    document.body.appendChild(div);
+    document.querySelector("#result").style.opacity = "255";
+  }, 300);
 }
