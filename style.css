@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
@@ -8,22 +9,17 @@
   --offwhite: #fbf1df;
   --black: #0d1d1d;
   --brown: #d94b27;
+  --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
   background-color: var(--black);
+  overflow-x: hidden;
 }
 
-nav {
-  padding-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  height: 3rem;
-  align-items: center;
-  transition: ease-in-out 300ms;
-}
+/* ==================== TYPOGRAPHY ==================== */
 
 h1 {
   color: var(--white);
@@ -32,10 +28,8 @@ h1 {
 
 h2 {
   color: var(--white);
-  left: 50%;
-  top: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  transition: inherit;
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
 }
 
 h3#text-value {
@@ -44,7 +38,21 @@ h3#text-value {
   font-size: 3rem;
   font-weight: normal;
   padding-bottom: 7vh;
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
 }
+
+/* ==================== NAVIGATION ==================== */
+
+nav {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+/* ==================== RESISTOR VISUAL ==================== */
 
 div#resistor-cable {
   background: radial-gradient(
@@ -75,6 +83,7 @@ div#resistor-base {
   left: 50%;
   border-radius: 50px;
   transform: translate(50%, 50%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 div#resistor-base > :first-child {
@@ -90,33 +99,19 @@ div.resistor-line {
   height: 100vh;
   width: 5vmin;
   z-index: 300;
-  transition: inherit;
+  transition: background-color var(--transition-fast), 
+              box-shadow var(--transition-fast),
+              transform var(--transition-fast);
 }
 
-div#colors-container{
-  display: none;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-  height: 60vh;
-  width: 75vw;
-  opacity: 0;
-  transition: ease-in-out 300ms;
+div.container-resistor {
+  width: 100vmin;
+  height: 20vh;
+  padding-bottom: 3vh;
+  animation: fadeInUp var(--transition-slow) ease-out;
 }
 
-div.color-picker{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-style: bold ;
-  display: flex;
-  text-anchor: middle;
-  align-items: center;
-  justify-content: center;
-  height: 10vh;
-  width: 10vh;
-  margin: 1vh;
-  border-radius: 100%;
-}
+/* ==================== MAIN OPTIONS (Color/Value Selection) ==================== */
 
 div#option-divider {
   background: radial-gradient(45% 200% at center, var(--white), var(--black));
@@ -127,7 +122,7 @@ div#option-divider {
   position: absolute;
   display: block;
   transform: translate(0, 50%);
-  transition: ease-in-out 300ms;
+  transition: opacity var(--transition-normal);
 }
 
 div#option-color,
@@ -140,13 +135,106 @@ div#option-value {
   align-items: center;
   width: 100%;
   height: calc(50vh - 1.5rem - 5px);
-  transition: ease-in-out 300ms;
+  transition: all var(--transition-normal);
   cursor: pointer;
 }
 
 div#option-value {
   top: calc(50vh + 1.5rem + 5px);
 }
+
+/* ==================== COLOR PICKER ==================== */
+
+div#colors-container {
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 60vh;
+  width: 75vw;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+div.color-picker {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  width: 10vh;
+  margin: 1vh;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: transform var(--transition-fast), 
+              box-shadow var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+div.color-picker:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* ==================== SELECTING ANIMATION ==================== */
+
+.selecting {
+  animation: selecting 1.5s ease-in-out infinite;
+  box-shadow: 0 0 0 3px var(--white);
+}
+
+@keyframes selecting {
+  0%, 100% {
+    box-shadow: 0 0 0 3px var(--white), 0 0 15px 5px rgba(217, 217, 217, 0.5);
+    transform: scaleY(1);
+  }
+  50% {
+    box-shadow: 0 0 0 3px transparent, 0 0 0 0 transparent;
+    transform: scaleY(1.02);
+  }
+}
+
+/* ==================== PROCEED BUTTON ==================== */
+
+#btn-proceed {
+  position: fixed;
+  background-color: var(--brown);
+  height: 15vmin;
+  width: 15vmin;
+  border-radius: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2rem;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(217, 75, 39, 0.4);
+  animation: popIn 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+#btn-proceed:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+@keyframes popIn {
+  0% {
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ==================== RESULT DISPLAY ==================== */
 
 div#display-value {
   display: flex;
@@ -156,48 +244,206 @@ div#display-value {
   align-items: center;
 }
 
-div.container-resistor {
-  width: 100vmin;
-  height: 20vh;
-  padding-bottom: 3vh;
-  transition: inherit;
-}
-
-div#result{
+div#result {
   display: flex;
   align-items: center;
   height: 100vh;
   width: 100vw;
   justify-content: center;
-  transition: ease-in 300ms;
+  opacity: 0;
+  transition: opacity var(--transition-slow);
 }
 
-.selecting{
-  animation: selecting 1000ms ease-in-out infinite;
+div#result h2 {
+  animation: fadeInUp 600ms ease-out forwards;
+  font-size: 2.5rem;
 }
 
-@keyframes selecting {
-  0% {border: 3px dashed var(--white);}
-  50% {border: 3px dashed transparent;}
-  100% {border: 3px dashed var(--white);}
+/* ==================== TOLERANCE PICKER ==================== */
+
+div#tolerance-container {
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80vw;
+  gap: 2vh;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
-#btn-proceed{
-  position: fixed;
-  background-color: var(--brown);
-  height: 15vmin;
-  width: 15vmin;
-  border-radius: 100%;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 2rem;
+div#tolerance-container p {
+  width: 100%;
+  text-align: center;
+  color: var(--white);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 1vh;
+  animation: fadeIn 400ms ease-out forwards;
+}
+
+div.tolerance-picker {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
   display: flex;
-  text-anchor: middle;
   align-items: center;
   justify-content: center;
-  bottom: 5vh;
-  left: 50%;
-  transform: translateX(-50%);
+  height: 8vh;
+  width: 20vw;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transition-fast), 
+              box-shadow var(--transition-fast);
+  animation: fadeInUp 400ms ease-out backwards;
 }
+
+div.tolerance-picker:nth-child(2) { animation-delay: 100ms; }
+div.tolerance-picker:nth-child(3) { animation-delay: 200ms; }
+div.tolerance-picker:nth-child(4) { animation-delay: 300ms; }
+
+div.tolerance-picker:active {
+  transform: scale(0.98);
+}
+
+div.tolerance-picker.re {
+  border: 2px solid var(--white);
+  color: var(--white);
+}
+
+/* ==================== VALUE INPUT MODE ==================== */
+
+div#value-input-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  gap: 2vh;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+input#value-input {
+  width: 60vw;
+  height: 8vh;
+  font-size: 2rem;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--white);
+  color: var(--black);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+  animation: fadeInUp 400ms ease-out backwards;
+}
+
+input#value-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--brown), 0 5px 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02);
+}
+
+select#unit-select {
+  width: 40vw;
+  height: 6vh;
+  font-size: 1.5rem;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--white);
+  color: var(--black);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: box-shadow var(--transition-fast);
+  animation: fadeInUp 400ms ease-out 100ms backwards;
+}
+
+select#unit-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--brown), 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+div#value-submit-btn {
+  background-color: var(--brown);
+  color: var(--white);
+  padding: 2vh 4vw;
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(217, 75, 39, 0.3);
+  transition: transform var(--transition-fast), 
+              box-shadow var(--transition-fast);
+  animation: fadeInUp 400ms ease-out 200ms backwards;
+}
+
+div#value-submit-btn:active {
+  transform: scale(0.98);
+}
+
+/* ==================== RESET BUTTON ==================== */
+
+div#reset-btn {
+  position: fixed;
+  bottom: 3vh;
+  right: 3vw;
+  background-color: var(--brown);
+  color: var(--white);
+  padding: 1.5vh 3vw;
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 3px 15px rgba(217, 75, 39, 0.3);
+  animation: slideInRight 400ms ease-out forwards;
+  transition: transform var(--transition-fast), 
+              box-shadow var(--transition-fast);
+}
+
+div#reset-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ==================== RESULT COLORS ==================== */
+
+div#result-colors {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+  margin-top: 2vh;
+}
+
+div.result-band {
+  width: 8vw;
+  height: 15vh;
+  border-radius: 5px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 500ms ease-out backwards;
+}
+
+div.result-band:nth-child(1) { animation-delay: 200ms; }
+div.result-band:nth-child(2) { animation-delay: 300ms; }
+div.result-band:nth-child(3) { animation-delay: 400ms; }
+div.result-band:nth-child(4) { animation-delay: 500ms; }
+
+/* ==================== COLOR CLASSES ==================== */
 
 .black,
 .r0 {
@@ -245,15 +491,19 @@ div#result{
   background-color: gray !important;
 }
 
+.white,
+.r9 {
+  background-color: white !important;
+  color: black;
+}
+
 .empty,
-.r9,
 .re {
   background-color: transparent !important;
 }
 
 div.empty,
-div.r9,
-div.re{
+div.re {
   border-radius: 100%;
   border-width: 2px !important;
   border-color: var(--white) !important;
@@ -261,12 +511,71 @@ div.re{
 
 .gold,
 .rg {
-  background-color: orange !important;
-  box-shadow: 1px 0px 15px 5px rgba(255, 255, 255, 0.75) inset;
+  background-color: #d4a017 !important;
+  box-shadow: 1px 0px 15px 5px rgba(255, 255, 255, 0.4) inset;
 }
 
 .silver,
 .rs {
-  background-color: gray !important;
-  box-shadow: 1px 0px 15px 5px rgba(255, 255, 255, 0.75) inset;
+  background-color: #c0c0c0 !important;
+  box-shadow: 1px 0px 15px 5px rgba(255, 255, 255, 0.5) inset;
 }
+
+/* ==================== KEYFRAME ANIMATIONS ==================== */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ==================== STAGGERED COLOR PICKER ANIMATIONS ==================== */
+
+div#colors-container div.color-picker {
+  animation: fadeInScale 400ms ease-out backwards;
+}
+
+div#colors-container div.color-picker:nth-child(1) { animation-delay: 50ms; }
+div#colors-container div.color-picker:nth-child(2) { animation-delay: 100ms; }
+div#colors-container div.color-picker:nth-child(3) { animation-delay: 150ms; }
+div#colors-container div.color-picker:nth-child(4) { animation-delay: 200ms; }
+div#colors-container div.color-picker:nth-child(5) { animation-delay: 250ms; }
+div#colors-container div.color-picker:nth-child(6) { animation-delay: 300ms; }
+div#colors-container div.color-picker:nth-child(7) { animation-delay: 350ms; }
+div#colors-container div.color-picker:nth-child(8) { animation-delay: 400ms; }
+div#colors-container div.color-picker:nth-child(9) { animation-delay: 450ms; }
+div#colors-container div.color-picker:nth-child(10) { animation-delay: 500ms; }

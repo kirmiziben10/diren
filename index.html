@@ -12,7 +12,7 @@
 <body>
     <script src="index.js"></script>
     <nav>
-        <h1>N'apıcan?</H1>
+        <h1>N'apıcan?</h1>
     </nav>
 
     <div id="option-color" onclick="transitionToColorSelection()"> 
@@ -39,6 +39,12 @@
             <div class="color-picker r7" onclick="setCurrentColor(this.innerHTML)">7</div>
             <div class="color-picker r8" onclick="setCurrentColor(this.innerHTML)">8</div>
             <div class="color-picker r9" onclick="setCurrentColor(this.innerHTML)">9</div>
+        </div>
+        <div id="tolerance-container">
+            <p>Tolerans bandı seçin:</p>
+            <div class="tolerance-picker gold" onclick="setTolerance('gold', 5)">±5%</div>
+            <div class="tolerance-picker silver" onclick="setTolerance('silver', 10)">±10%</div>
+            <div class="tolerance-picker re" onclick="setTolerance('none', 20)">±20%</div>
         </div>
 
     </div>
